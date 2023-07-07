@@ -1,0 +1,72 @@
+#include <iostream>
+#include <algorithm>
+#include <cmath>
+#include <vector>
+
+using namespace std;
+
+struct StudentRecord {
+    int id;
+    string name;
+    int age;
+    float score;
+} add1, add2;
+
+int main() {
+    int action;
+
+    cout << "Select one problem to run: " << endl;
+    cout << "1. Prime Palindromes" << endl;
+    cout << "2. Dynamic Histogram" << endl;
+    cout << "3. Student Record Management" << endl;
+    cin >> action;
+
+    if (action == 1) {
+        int array[0];
+        int n;
+        cin >> n;
+
+        for (int i = 0; i < n; ++i) {
+            cin >> array[i];
+            for (int j = 0; j < 5; ++j) {
+                int palindromes[0];
+                cout << palindromes[j];
+            }
+        }
+
+    } else if (action == 2) {
+        int n;
+        int area = 0;
+        int array[0];
+        cin >> n;
+
+        for (int i = 0; i < n; ++i) {
+            cin >> array[n];
+            area += array[n] - 1;
+        }
+        cout << area * 2;
+
+    } else if (action == 3) {
+
+
+        StudentRecord add1;
+        add1.id = 1;
+        add1.name = "John";
+        add1.age = 21;
+        add1.score = 90.5;
+
+        StudentRecord add2;
+
+        add2.id = 2;
+        add2.name = "Alice";
+        add2.age = 22;
+        add2.score = 85.0;
+
+        vector<StudentRecord> files;
+        files.push_back(add1);
+        files.push_back(add2);
+
+
+    }
+    return 0;
+}
