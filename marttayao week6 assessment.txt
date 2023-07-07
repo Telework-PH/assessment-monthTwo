@@ -1,0 +1,141 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+int studentCounter;
+struct Student{
+    vector<string> name;
+    vector<int> id;
+    vector <int> age;
+    vector<float> score;
+    vector <string>students;
+    int sizeName = sizeof(name)/sizeof(name[0]);
+    int sizeId = sizeof(id)/sizeof(id[0]);
+    int sizeAge = sizeof(age)/sizeof(age[0]);
+    int sizeScore = sizeof(score)/sizeof(score[0]);
+
+
+};
+
+int main() {
+    Student student1;
+
+    int counter = student1.sizeName;
+    while (true) {
+
+        int counter = student1.sizeName;
+        cout << "[1] Add a student record (ID, Name, Age, Score)\n";
+        cout << "[2] Delete a student record based on ID\n";
+        cout << "[3] Update the score of a student based on ID\n";
+        cout << "[4] Display the highest scoring student\n";
+        cout << "[5] Display all records\n";
+        cout << "[0] to Exit\n";
+        string selected;
+        cin>>selected;
+
+
+        string nameInput;
+        int idInput;
+        int ageInput;
+        float scoreInput;
+
+        if (selected == "1") {
+            cout << "enter the id ";
+            cin>>idInput;
+            student1.id.push_back(idInput);
+
+            cout << "enter the name ";
+            cin>>nameInput;
+            student1.name.push_back(nameInput);
+
+            cout << "enter the  Age ";
+            cin>>ageInput;
+            student1.age.push_back(ageInput);
+
+            cout << "enter the  Score ";
+            cin>>scoreInput;
+            student1.score.push_back(scoreInput);
+            counter++;
+        }
+        
+        cout<<"\n the number of student/s is "<<counter<<"\n";
+
+        //display the recods if there is
+        if(counter>0){
+            for(int i=0;i< counter;i++){
+                studentCounter++;
+                cout<<endl;
+                cout<<studentCounter<<" student id "<<student1.id[i]<<" \n";
+                cout<<"student name "<<student1.name[i]<<" \n";
+                cout<<"student age "<<student1.age[i]<<" \n";
+                cout<<"student score "<<student1.score[i]<<" \n";
+            }
+        }else{
+
+            cout<<" There is no record/s in the database \n";
+
+
+        };
+
+        //delete records
+        if (selected == "2") {
+
+            if(counter ==0){
+
+                cout << "Please add a student first \n ";
+
+                cout << "enter the id ";
+                cin>>idInput;
+                student1.id.push_back(idInput);
+
+                cout << "enter the name ";
+                cin>>nameInput;
+                student1.name.push_back(nameInput);
+
+                cout << "enter the  Age ";
+                cin>>ageInput;
+                student1.age.push_back(ageInput);
+
+                cout << "enter the  Score ";
+                cin>>scoreInput;
+                student1.score.push_back(scoreInput);
+
+
+            };
+
+            for(int i=0;i< counter;i++){
+                studentCounter++;
+                cout<<endl;
+                cout<<studentCounter<<" student id "<<student1.id[i]<<" \n";
+                cout<<"student name "<<student1.name[i]<<" \n";
+                cout<<"student age "<<student1.age[i]<<" \n";
+                cout<<"student score "<<student1.score[i]<<" \n";
+            }
+
+            cout<<"Witch student you want to delete? \n";
+
+            string toDelete;
+            cin>>toDelete;
+
+            if(toDelete == "1" ){
+
+
+
+            }
+
+        }
+
+
+        if (selected == "0")
+            exit(0);
+        else {
+            cout << "\nPlease enter a valid value.\n";
+            continue;
+        }
+    }
+
+
+    return 0;
+}
+
+
