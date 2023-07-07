@@ -1,0 +1,132 @@
+#include <iostream>
+#include <vector>
+#include <array>
+#include <algorithm>
+using namespace std;
+
+struct StudentRec {             // student structure
+   // int id[2];
+    string name;            //declaring variables inside
+    int age;
+    float score;
+} student1, student2;
+
+void problemOne() {
+    cout << "Prime Palindromes" << endl;
+}
+bool prime(int n) {
+    if (n <= 1) {
+        return false;
+    }
+    for (int i = 2; i * i <= n; i++) {
+        if (n % i == 0) {     // check if there is no remainder
+            return false;
+        }
+    }
+    return true;
+}
+bool palindrome(int n) {                    // declaring palindrome
+    string str_n = to_string(n);
+    return str_n == string(str_n.rbegin(), str_n.rend());
+}
+
+vector<int> find_prime_palindromes(int l, int r) { // find the prime palindromes
+    vector<int> prime_palindromes;
+    for (int i = l; i <= r; i++) {
+        if (prime(i) && palindrome(i)) {
+            prime_palindromes.push_back(i);
+        }
+    }
+    return prime_palindromes;
+}
+
+void problemTwo() {
+    cout << "Dynamic Histogram" << endl;
+    int array[6];
+    int n;
+    cin >> n;
+    vector<int> histogram(n);
+    for (int i = 0; i < 6; i++) {
+        cin >> histogram[i];
+    }
+                                 // Find the maximum area of the histogram.
+    int maximum = 0;
+
+    for (int i = 0; i < 6; i++) {
+        int current_area = histogram[i];
+        for (int j = i - 1; j >= 0; j--) {
+            if (histogram[j] <= histogram[i]) {     // when i put the  given input in the given example, different output displays
+                current_area += histogram[i];
+            } else {
+                break;
+            }
+        }
+        maximum = max(maximum, current_area);       // gets the maximum number
+    }
+    cout << maximum << endl;
+    }
+void problemThree() {
+    cout << "Student Record Management" << endl;
+    StudentRec();
+}
+void invalidInput() {
+    cout << "Invalid input";
+}
+
+int main() {
+
+    int select;
+                                        // program selection
+    while(true) {
+        cout << "SELECT A PROGRAM TO RUN" << endl;
+        cout << "1. Prime Palindromes" << endl;
+        cout << "2. Dynamic Histogram" << endl;
+        cout << "3. Student Record Management" << endl;
+        cout << "4. Exit" << endl;
+        cout << "Enter: ";
+        while (!(cin >> select) || select < 0) {
+            cout << "Invalid input" << endl;
+            cout << "Enter: " << endl;
+            cin.clear();
+            cin.ignore(999, '\n');
+        }
+
+        if (select == 1) {
+            problemOne();
+            int l, r;
+            cin >> l >> r;
+            vector<int> prime_palindromes = find_prime_palindromes(l, r);
+            for (int prime_palindrome : prime_palindromes) {
+                cout << prime_palindrome << " ";
+
+            }
+            continue;
+        }
+        else if (select == 2) {
+            problemTwo();
+        }
+        else if (select == 3) {
+            problemThree();
+            student1 = {"Jisoo", 25, 99};
+            student2 = {"Chaewon", 24, 98};
+            vector<StudentRec> students;
+            students.push_back(student1);
+            students.push_back(student2);
+
+            for(StudentRec student : students) {
+                cout << "Name: " << student.name << endl;
+                cout << "Age: " << student.age << endl;
+                cout << "Score: " << student.score << endl;
+                cout << endl;
+            }
+                cout << "Update: "; // didn't finish this one
+        }
+        else if (select == 4) {
+            exit(0);
+        }
+        else {
+            invalidInput();
+        }
+        return 0;
+    }
+}
