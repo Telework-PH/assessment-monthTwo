@@ -1,0 +1,103 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+bool isPrime(int n) {
+  if (n < 2) return false;
+  for (int i = 2; i * i <= n; i++) {
+    if (n % i == 0) return false;
+  }
+  return true;
+}
+
+bool isPalindrome(int n) {
+  string str = to_string(n);
+  for (int i = 0, j = str.length() - 1; i < j; i++, j--) {
+    if (str[i] != str[j]) return false;
+  }
+  return true;
+}
+	
+int main() {
+  int x;
+  do {
+    cout << "Select one program to run: " << endl;
+    cout << "1. Prime Palindromes" << endl;
+    cout << "2. Dynamic Histogram" << endl;
+    cout << "3. Student Record Management" << endl;
+    cout << "0. Exit" << endl;
+    cin >> x;
+
+    switch (x) {
+      case 1:{
+		  int L, R;
+		  cin >> L >> R;
+
+		  vector<int> prime_palindromes;
+		  for (int i = L; i <= R; i++) {
+			if (isPrime(i) && isPalindrome(i)) {
+			  prime_palindromes.push_back(i);
+			}
+		  }
+
+		  for (int i = 0; i < prime_palindromes.size(); i++) {
+			cout << prime_palindromes[i] << " ";
+		  }
+		  cout << endl;
+	  }
+	break;
+
+      case 2:{
+		int n;
+		cin >> n;
+		vector<int> heights(n);
+		for (int i = 0; i < n; i++) {
+		cin >> heights[i];
+		}
+
+		vector<int> stack;
+		int max_area = 0;
+		for (int i = 0; i < n; i++) {
+		while (!stack.empty() && heights[stack.back()] >= heights[i]) {
+		  int top = stack.back();
+		  stack.pop_back();
+
+		  int width = i - stack.back() - 1;
+		  int area = heights[top] * width;
+
+		  max_area = max(max_area, area);
+		}
+
+		stack.push_back(i);
+		}
+
+		int sum_area = 0;
+		for (int i = 0; i < n; i++) {
+		int width = i - stack.back() - 1;
+		int area = heights[i] * width;
+		sum_area += area;
+		}
+
+	  cout << max_area << endl;
+	  }
+	break;
+	
+      case 3:
+
+        break;
+		
+            case 0:
+                cout << "Thank you & goodbye" << endl;
+                break;
+            default:
+                cout << "Invalid input" << endl;
+                cout << endl;
+                break;
+        }
+
+    } while (x != 0);
+
+    return 0;
+}
